@@ -29,11 +29,11 @@ def findPercentage (file):
 
     countOfFirePokemon40 = len([i for i in typeToLevelDict["fire"] if float(i) > 40])
 
-    percentage = (countOfFirePokemon40/countOfFirePokemon) * 100
+    percentage = round((countOfFirePokemon40/countOfFirePokemon) * 100)
 
-    accurate_percentage = round(percentage)
+    
     with open("pokemon1.txt", "w") as f:
-        f.write(f"Percentage of fire type pokemon over level 40 is {accurate_percentage}")
+        f.write(f"Percentage of fire type pokemon over level 40 is {percentage}%")
 
 
 def MostFrequentElement(lis):
