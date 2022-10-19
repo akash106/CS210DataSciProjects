@@ -1,3 +1,4 @@
+from cmath import nan
 import math
 import collections
 import csv
@@ -15,38 +16,52 @@ def findPercentage (file):
         reader = csv.DictReader(pokedex, delimiter=',')
         next(reader)
         for row in reader:
-           for typeOf, level in row.items():
-                if typeOf not in typeToLevelDict.keys():
-                    typeToLevelDict[typeOf] = [];
-                    typeToLevelDict[typeOf].append(level)
-                else:
-                    typeToLevelDict[typeOf].append(level)
-
-    countOfFirePokemon = len([i for i in typeToLevelDict['type'] if i == 'fire'])
-
-    countOfFirePokemon40 = len([i for i in typeToLevelDict['level'] if float(i) > 40 and typeToLevelDict['type'] == 'fire'])
-
-    percentage = countOfFirePokemon40 / countOfFirePokemon
-
-    print(countOfFirePokemon40)  
-    #countOfFirePokemon40 = len([i for i in typeToLevelDict['level'] and typeToLevelDict['type'] if i == 'fire' and i > 40])         
+            #print(row)
+            if row['type'] not in typeToLevelDict.keys():
+                typeToLevelDict[row['type']] = []
+                typeToLevelDict[row['type']].append(row['level'])
+            else:
+                typeToLevelDict[row['type']].append(row['level'])
 
     
+    print(typeToLevelDict.items())
+    countOfFirePokemon = len([i for i in typeToLevelDict["fire"]])
 
+    countOfFirePokemon40 = len([i for i in typeToLevelDict["fire"] if float(i) > 40])
+
+    percentage = (countOfFirePokemon40/countOfFirePokemon) * 100
+
+    accurate_percentage = round(percentage)
+    with open("pokemon1.txt", "w") as f:
+        f.write(f"Percentage of fire type pokemon over level 40 is {accurate_percentage}")
+
+
+def MostFrequentElement(lis):
+    return max(set(lis), key = lis.count)
+     
+def missingType(file):
+    typeToWeaknessDict = {}
+
+    with open(file) as pokedex:
+        csv_reader = csv.reader(pokedex, delimiter=',')
         
+        for row in csv_reader:
+            if row['type'] not in typeToWeaknessDict.keys() and row['weakness'] != nan:
+                typeToWeaknessDict[row['type']] = []
+                typeToWeaknessDict[row['type']].append(row['weakness'])
+            elif row['weakness'] != nan:
+                typeToWeaknessDict[row['type']].append(row['weakness'])
     
+    with open(file, "w") as pokedex:
+        csv_reader = csv.reader(pokedex, delimiter=',')
+        for row in csv_reader:
+            if row['weakness'] == nan:
+                mostCommonWeakness = MostFrequentElement(typeToWeaknessDict[row['type']])
+                row['weakness'] = mostCommonWeakness
+    
+    return
 
-            
-    
-    
 
-    
-    pass
-    # create a dict of type to level then while going through the dict count the number of fire type of pokemon and the ones above 40
-    
-
-def missingType():
-    pass
 
 def missingVals():
     pass
@@ -59,4 +74,5 @@ def avgHitPoints():
 
 def main():
     findPercentage("pokemonTrain.csv")
+    #missingType("pokemonTrain.csv")
 main()    
