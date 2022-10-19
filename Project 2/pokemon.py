@@ -26,6 +26,8 @@ def findPercentage (file):
 
     countOfFirePokemon40 = len([i for i in typeToLevelDict['level'] if float(i) > 40 and typeToLevelDict['type'] == 'fire'])
 
+    percentage = countOfFirePokemon40 / countOfFirePokemon
+
     print(countOfFirePokemon40)  
     #countOfFirePokemon40 = len([i for i in typeToLevelDict['level'] and typeToLevelDict['type'] if i == 'fire' and i > 40])         
 
