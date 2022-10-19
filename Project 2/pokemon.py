@@ -32,7 +32,7 @@ def findPercentage (file):
 
     accurate_percentage = round(percentage)
     with open("pokemon1.txt", "w") as f:
-        f.write(f"Percentage of fire type pokemon over level 40 is {accurate_percentage}")
+        f.write(f"Percentage of fire type pokemon over level 40 is {accurate_percentage}%")
 
 
 def MostFrequentElement(lis):
