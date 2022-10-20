@@ -29,9 +29,11 @@ def avgAge (file):
                     else:
                         row['age'].replace(row['age'], str(match[0]))
                         print(match[0])
+                else:
+                    print(row['age'])
                         
                 
-                   
+    #struggling to update the vals in the CSV not sure why but everytime I write the file it clears the CSV lmao                   
 
 
     # iterate through the rows checking the age
