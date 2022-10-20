@@ -50,23 +50,71 @@ def missingType(file):
                 WeaknessToTypeDict[row['weakness']].append(row['type'])
             elif row['type'] != "NaN":
                 WeaknessToTypeDict[row['weakness']].append(row['type'])
+        pokedex.close()   
+
+
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
         
-    print(WeaknessToTypeDict)
-    
-    with open(file, 'r+') as out:
-        csv_reader = csv.DictReader(out, delimiter=',')
-        next(csv_reader)
-        for row in csv_reader:
+
+    with open("pokemonResult.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        
+        for row in reader:
+            print(row)
             if row['type'] == "NaN":
-                print(row['weakness'])
-                MostCommonElement = MostFrequentElement(WeaknessToTypeDict[row['weakness']])
-                print(MostCommonElement)
-                row['type'].replace("NaN", MostCommonElement)
+                mostCommonElement = MostFrequentElement(WeaknessToTypeDict[row['weakness']])
+                row['type'] = mostCommonElement
+                print(row['type'])
+                writer.writerow(row)
+                
+            else:
+                writer.writerow(row)
+        
+    
+
+
+
     #need to figure out how to replace value in csv
 
 
-def missingVals():
-    pass
+def missingVals(file):
+    keyList = ["atk", "hp", "def"]
+    Level40 = {}    
+    UnderLevel40 = {}
+    for i in keyList:
+        Level40[i] = []
+        UnderLevel40[i] = []
+    
+    with open(file) as pokedex:
+        csv_reader = csv.DictReader(pokedex, delimiter=',')
+        next(csv_reader)
+        for row in csv_reader:
+            if row['hp'] != "NaN":
+                if float(row['level']) <= 40.0:
+                    UnderLevel40['hp'].append(float(row['hp']))
+                else:
+                    Level40['hp'].append(float(row['hp']))
+            if row['atk'] != "NaN":
+                if float(row['level']) <= 40.0:
+                    UnderLevel40['atk'].append(float(row['atk']))
+                else:
+                    Level40['atk'].append(float(row['atk']))
+            if row['def'] != "NaN":
+                if float(row['level']) <= 40.0:
+                    UnderLevel40['def'].append(float(row['def']))
+                else:
+                    Level40['def'].append(float(row['def']))
+    
+    print(Level40)
+    print(UnderLevel40)
+
+    for i in Level40.keys():
+        Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 1)
+        UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 1)
+    
+    print(Level40)
+    print(UnderLevel40)
 
 def personalityDict(file):
     typeToPersonality = {}
@@ -116,6 +164,7 @@ def avgHitPoints(file):
 def main():
     #findPercentage("pokemonTrain.csv")
     missingType("pokemonTrain.csv")
-    personalityDict("pokemonTrain.csv")
+    #personalityDict("pokemonTrain.csv")
     #avgHitPoints("pokemonTrain.csv")
+    #missingVals("pokemonTrain.csv")
 main()    
