@@ -1,10 +1,10 @@
 ID,age,sex,city,province,country,latitude,longitude,date_onset_symptoms,date_admission_hospital,date_confirmation,symptoms
-11816.0,40-49,female,NaN,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
-11814.0,60-69,male,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
-11813.0,60-69,male,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
-8504.0,60-69,male,NaN,Aichi Prefecture,Japan,35.2188941,136.9996761,17.02.2020,18.02.2020,18.02.2020,NaN
-8501.0,60-60,female,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,13.02.2020,14.02.2020,15.02.2020,fever; headache
-11815.0,60-69,female,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
+11816.0,44,female,NaN,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
+11814.0,64,male,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
+11813.0,64,male,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
+8504.0,64,male,NaN,Aichi Prefecture,Japan,35.2188941,136.9996761,17.02.2020,18.02.2020,18.02.2020,NaN
+8501.0,60,female,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,13.02.2020,14.02.2020,15.02.2020,fever; headache
+11815.0,64,female,Nagoya City,Aichi Prefecture,Japan,35.18333,136.9,19.02.2020,21.02.2020,22.02.2020,fever
 889.0,46,female,NaN,Anhui,China,NaN,118.35600000000001,19.01.2020,22.01.2020,26.01.2020,fever
 888.0,47,female,Ma'anshan City,Anhui,China,31.62885,118.35600000000001,22.01.2020,24.01.2020,26.01.2020,NaN
 887.0,55,male,NaN,Anhui,China,31.62885,NaN,18.01.2020,24.01.2020,26.01.2020,fever
@@ -129,10 +129,10 @@ ID,age,sex,city,province,country,latitude,longitude,date_onset_symptoms,date_adm
 167.0,20,male,NaN,Guizhou,China,26.43055,107.1928,18.01.2020,18.01.2020,22.01.2020,discomfort
 169.0,50,female,Tongren City,Guizhou,China,NaN,NaN,14.01.2020,21.01.2020,22.01.2020,NaN
 8489.0,68,male,Zunyi City,Guizhou,China,28.171429999999997,107.0848,31.01.2020,03.02.2020,07.02.2020,nausea; vomiting
-11550.0,0-10,male,NaN,Hokkaido,Japan,43.4115473,142.3833135,15.02.2020,19.02.2020,21.02.2020,fever 37.7 C
-11551.0,0-10,male,Nakafurano,Hokkaido,Japan,43.4115473,142.3833135,18.02.2020,19.02.2020,21.02.2020,fever 37.7 C
-12576.0,30-39,male,Okhotsk,Hokkaido,Japan,NaN,144.260889,17.02.2020,24.02.2020,27.02.2020,sore throat; fever (38-39 C)
-12554.0,70-79,female,Shinhidaka,Hokkaido,Japan,42.4384206,142.3325668,17.02.2020,24.02.2020,26.02.2020,fever (38-39 C); malaise
+11550.0,4,male,NaN,Hokkaido,Japan,43.4115473,142.3833135,15.02.2020,19.02.2020,21.02.2020,fever 37.7 C
+11551.0,4,male,Nakafurano,Hokkaido,Japan,43.4115473,142.3833135,18.02.2020,19.02.2020,21.02.2020,fever 37.7 C
+12576.0,34,male,Okhotsk,Hokkaido,Japan,NaN,144.260889,17.02.2020,24.02.2020,27.02.2020,sore throat; fever (38-39 C)
+12554.0,74,female,Shinhidaka,Hokkaido,Japan,42.4384206,142.3325668,17.02.2020,24.02.2020,26.02.2020,fever (38-39 C); malaise
 4109.0,39,male,Hong Kong,Hong Kong,China,22.38074,114.1324,19.01.2020,30.01.2020,01.02.2020,cough; fever
 1085.0,64,male,NaN,Hong Kong,China,22.38074,114.1324,24.01.2020,25.01.2020,26.01.2020,fever
 9670.0,51,male,Tsing Yi,Hong Kong,China,NaN,NaN,03.02.2020,10.02.2020,12.02.2020,fever

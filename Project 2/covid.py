@@ -8,14 +8,19 @@ def avgAge (file):
 
 
     # open the write file
-    
+   
 
     # open the read file (which will be the same as the write file)
 
-        with open(file) as covidResults1:
-            reader = csv.DictReader(covidResults1)
-            for row in reader:
-                
+
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+        
+
+    with open("covidTrain.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
                 if re.search('-', row['age']):
                     match = re.split(r"\D", row['age'])
                     sum = 0
@@ -24,22 +29,17 @@ def avgAge (file):
                         for i in range(int(match[0]), int(match[1])):
                             sum += i
                         avg = round(sum/length)
-                        row['age'].replace(row['age'], str(avg))
-                        print(avg)
+                        row['age'] = str(avg)
+                        writer.writerow(row)
+                        #print(row['age'])
                     else:
-                        row['age'].replace(row['age'], str(match[0]))
-                        print(match[0])
+                        #print(row['age'])
+                        row['age'] = str(match[0])
+                        writer.writerow(row)
                 else:
-                    print(row['age'])
+                    writer.writerow(row)
                         
-                
-    #struggling to update the vals in the CSV not sure why but everytime I write the file it clears the CSV lmao                   
-
-
-    # iterate through the rows checking the age
-        # use regex .split() and then set those two values as start and end
-        # iterate through that range and find the sum of those values
-        # get out of that loop and repalce the age range with the avg
+     
     
     
 
