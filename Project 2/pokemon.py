@@ -59,13 +59,13 @@ def missingType(file):
 
     with open("pokemonResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
-        
+        writer.writeheader()
         for row in reader:
-            print(row)
+            
             if row['type'] == "NaN":
                 mostCommonElement = MostFrequentElement(WeaknessToTypeDict[row['weakness']])
                 row['type'] = mostCommonElement
-                print(row['type'])
+                
                 writer.writerow(row)
                 
             else:
@@ -106,15 +106,49 @@ def missingVals(file):
                 else:
                     Level40['def'].append(float(row['def']))
     
-    print(Level40)
-    print(UnderLevel40)
-
     for i in Level40.keys():
         Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 1)
         UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 1)
     
-    print(Level40)
-    print(UnderLevel40)
+    with open("pokemonResult.csv", "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+        
+
+    with open("pokemonResult.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
+             if row['hp'] == "NaN":
+                if float(row['level']) <= 40.0:
+                    row['hp'] = UnderLevel40['hp']
+                    
+                else:
+                    row['hp'] = Level40['hp']
+                    
+            
+
+             if row['atk'] == "NaN":
+                if float(row['level']) <= 40.0:
+                    row['atk'] = UnderLevel40['atk']
+                    
+                else:
+                    row['atk'] = Level40['atk']
+                    
+             
+             if row['def'] == "NaN":
+                if float(row['level']) <= 40.0:
+                    row['def'] = UnderLevel40['def']
+                    
+                else:
+                    row['def'] = Level40['def']
+             writer.writerow(row)      
+            
+            
+             
+        
+    
+    
+    
 
 def personalityDict(file):
     typeToPersonality = {}
@@ -166,5 +200,5 @@ def main():
     missingType("pokemonTrain.csv")
     #personalityDict("pokemonTrain.csv")
     #avgHitPoints("pokemonTrain.csv")
-    #missingVals("pokemonTrain.csv")
+    missingVals("pokemonTrain.csv")
 main()    
