@@ -17,7 +17,7 @@ def avgAge (file):
         reader = csv.DictReader(inp.readlines())
         
 
-    with open("covidTrain.csv", 'w') as out:
+    with open("covidTrainResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -45,7 +45,7 @@ def changeDate(file):
         reader = csv.DictReader(inp.readlines())
         
 
-    with open("covidTrain.csv", 'w') as out:
+    with open("covidTrainResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -91,7 +91,7 @@ def missingCity(file):
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
-    with open("covidTrain.csv", 'w') as out:
+    with open("covidTrainResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -105,12 +105,47 @@ def missingCity(file):
                 writer.writerow(row)
         
 
-def missingSymptoms():
-    pass
+def missingSymptoms(file):
     
+    provToSympDict = {}
+
+    with open(file) as inp:
+        reader = csv.DictReader(inp, delimiter= ',')
+        for row in reader:
+            if row['province'] not in provToSympDict.keys() and row['symptoms'] != "NaN":
+                provToSympDict[row['province']] = []
+                if re.search(';', row['symptoms']):
+                    symptomsList = re.split(r'; |;', row['symptoms'])
+                    for i in symptomsList:
+                        provToSympDict[row['province']].append(i)
+                else:
+                    provToSympDict[row['province']].append(row['symptoms'])
+            elif row['symptoms'] != "NaN":
+                if re.search(';', row['symptoms']):
+                    symptomsList = re.split(r'; |;', row['symptoms'])
+                    for i in symptomsList:
+                        provToSympDict[row['province']].append(i)
+                else:
+                    provToSympDict[row['province']].append(row['symptoms'])
+
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+
+    with open("covidTrainResult.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
+            if row['symptoms'] == "NaN":
+                frequentSymptom = MostFrequentElement(provToSympDict[row['province']])
+                row['symptoms'] = frequentSymptom
+                #print(row['city'])
+                writer.writerow(row)
+            else:
+                writer.writerow(row)
 
 def main():
-    #avgAge('covidTrain.csv')
-    changeDate('covidTrain.csv')
-    missingCity('covidTrain.csv')
+    avgAge('covidTrain.csv')
+    changeDate('covidTrainResult.csv')
+    missingCity('covidTrainResult.csv')
+    missingSymptoms('covidTrainResult.csv')
 main()

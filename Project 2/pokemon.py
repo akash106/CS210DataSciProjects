@@ -142,13 +142,7 @@ def missingVals(file):
                 else:
                     row['def'] = Level40['def']
              writer.writerow(row)      
-            
-            
-             
-        
-    
-    
-    
+                
 
 def personalityDict(file):
     typeToPersonality = {}
