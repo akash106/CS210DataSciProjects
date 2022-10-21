@@ -39,10 +39,44 @@ def avgAge (file):
                 else:
                     writer.writerow(row)
                         
-     
+def changeDate(file):
     
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+        
+
+    with open("covidTrain.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
+
+            seprea = '.'
+
+            symptomsList = re.split(r'[.]', row['date_onset_symptoms'])
+            symptomsList[0], symptomsList[1] = symptomsList[1], symptomsList[0]
+            row['date_onset_symptoms'] = seprea.join(symptomsList)
+
+            hospitalList = re.split(r'[.]', row['date_admission_hospital'])
+            hospitalList[0], hospitalList[1] = hospitalList[1], hospitalList[0]
+            row['date_admission_hospital'] = seprea.join(hospitalList)
+            #print(row['date_admission_hospital'])
+            confirmList = re.split(r'[.]', row['date_confirmation'])
+            confirmList[0], confirmList[1] = confirmList[1], confirmList[0]
+            row['date_confirmation'] = seprea.join(confirmList)
+
+            writer.writerow(row)
+    
+def missingLongLat ():
+    pass
+
+def missingCity():
+    pass
+
+def missingSymptoms():
+    pass
     
 
 def main():
-    avgAge('covidTrain.csv')
+    #avgAge('covidTrain.csv')
+    changeDate('covidTrain.csv')
 main()
