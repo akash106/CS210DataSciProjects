@@ -69,8 +69,41 @@ def changeDate(file):
 def missingLongLat ():
     pass
 
-def missingCity():
-    pass
+
+def MostFrequentElement(lis):
+    return max(set(lis), key = lis.count)
+
+def missingCity(file):
+
+    provToCityDict = {}
+
+    with open(file) as inp:
+        reader = csv.DictReader(inp, delimiter= ',')
+        for row in reader:
+            if row['province'] not in provToCityDict.keys() and row['city'] != "NaN":
+                provToCityDict[row['province']] = []
+                provToCityDict[row['province']].append(row['city'])
+            elif row['city'] != "NaN":
+                provToCityDict[row['province']].append(row['city'])
+
+
+
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+
+    with open("covidTrain.csv", 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
+            if row['city'] == "NaN":
+                frequentCity = MostFrequentElement(provToCityDict[row['province']])
+                print(frequentCity)
+                row['city'] = frequentCity
+                #print(row['city'])
+                writer.writerow(row)
+            else:
+                writer.writerow(row)
+        
 
 def missingSymptoms():
     pass
@@ -79,4 +112,5 @@ def missingSymptoms():
 def main():
     #avgAge('covidTrain.csv')
     changeDate('covidTrain.csv')
+    missingCity('covidTrain.csv')
 main()
