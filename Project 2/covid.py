@@ -6,13 +6,6 @@ import re
 
 def avgAge (file):
 
-
-    # open the write file
-   
-
-    # open the read file (which will be the same as the write file)
-
-
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
         
@@ -86,8 +79,6 @@ def missingCity(file):
             elif row['city'] != "NaN":
                 provToCityDict[row['province']].append(row['city'])
 
-
-
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
@@ -142,6 +133,7 @@ def missingSymptoms(file):
                 writer.writerow(row)
             else:
                 writer.writerow(row)
+
 
 def main():
     avgAge('covidTrain.csv')
