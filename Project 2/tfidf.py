@@ -4,29 +4,12 @@ import csv
 import re
 
 
-def clean ():
+def preproc():
     pass
 
-def stopWords():
+def calcTFIDF():
     pass
 
-def stemLem():
-    pass
-
-def distinctWords():
-    pass
-
-def termFreq():
-    pass
-
-def invDocFreq():
-    pass
-
-def TFIDFScore():
-    pass
-
-def top5Words():
-    pass
 
 def main():
     pass
