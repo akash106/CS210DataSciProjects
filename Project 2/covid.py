@@ -59,8 +59,51 @@ def changeDate(file):
 
             writer.writerow(row)
     
-def missingLongLat ():
-    pass
+def missingLongLat (file):
+    latitude = {}
+    longitude = {}
+    with open(file) as covidData:
+        reader = csv.DictReader(covidData, delimiter=',')
+        next(reader)
+        for row in reader:
+            if row['province'] not in latitude.keys() and row['latitude'] != "NaN":
+                latitude[row['province']] = []
+                latitude[row['province']].append(float(row['latitude']))
+            elif row['latitude'] != "NaN":
+                latitude[row['province']].append(float(row['latitude']))
+            if row['province'] not in longitude.keys() and row['longitude'] != "NaN":
+                longitude[row['province']] = []
+                longitude[row['province']].append(float(row['longitude']))
+            elif row['longitude'] != "NaN":
+                longitude[row['province']].append(float(row['longitude']))
+        covidData.close()
+        #now just have to write it to a file
+
+    for i in latitude.keys():
+        latitude[i] = round(sum(latitude[i]) / len(latitude[i]), 2)
+    for i in longitude.keys():
+        longitude[i] = round(sum(longitude[i]) / len(longitude[i]), 2)
+    
+    print(latitude)
+    print(longitude)
+
+    with open(file, "r") as inp:
+        reader = csv.DictReader(inp.readlines())
+
+    with open('covidTrainResult.csv', 'w') as out:
+        writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
+        writer.writeheader()
+        for row in reader:
+            
+            if row['latitude'] == "NaN":
+                
+                row['latitude'] = latitude[row['province']]
+
+            if row['longitude'] == "NaN":
+                 row['longitude'] = longitude[row['province']]
+
+            writer.writerow(row)   
+        covidData.close()    
 
 
 def MostFrequentElement(lis):
