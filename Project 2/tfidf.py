@@ -12,14 +12,17 @@ def preproc(file):
     # open file
     preprocFile = open(file)
     str1 = preprocFile.readline()
-    #print(str1)  
+    print(str1)  
 
-    str1 = re.sub('/\s\s+/g,', '', str1)    
-    str1 = re.sub(r'[^a-zA-Z_0-9 ]', '', str1)
+    str1 = re.sub('http', '', str1)
+    str1 = re.sub("[\W]{1,}",' ',str1) 
+    str1 = re.sub('(\\b[A-Za-z] \\b|\\b [A-Za-z]\\b)', '', str1)
+    
+    print(str1)
     
    
 
-    print(str1)
+    
 
     #bruh i give up idk how to do regex
     
