@@ -183,4 +183,5 @@ def main():
     changeDate('covidTrainResult.csv')
     missingCity('covidTrainResult.csv')
     missingSymptoms('covidTrainResult.csv')
+    missingLongLat('covidTrainResult.csv')
 main()
