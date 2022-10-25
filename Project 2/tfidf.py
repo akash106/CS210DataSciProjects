@@ -57,14 +57,18 @@ def calcTFIDF(file):
                 totalWords += 1
                 word_freq[i] = 0
             word_freq[i] += 1
+    print(totalWords)
+    print(word_freq) #Calculating frequencies of every word
+    tf_dict = {}
     
-    print(word_freq)
-
+    for i in word_freq.keys():
+        tf_dict[i] = word_freq[i] / totalWords
+   
+    print(tf_dict)    
 
 
 
 def main():
-    
     with open('tfidf_docs.txt') as docs:
         for line in docs:
             preproc(line.strip())
