@@ -22,7 +22,7 @@ def preproc(file):
     # clean up the string
 
         str1 = re.sub(r'http://\S+ | https://\S+', '', str1)
-       # str1 = re.sub("[a-z]\w[a-z]", '', str1)
+        #str1 = re.sub("[a-z]\w[a-z]", '', str1)
         str1 = re.sub('[^\w\s]','',str1) 
         str1 = re.sub('\s+', ' ', str1)
         str1 = re.sub('(\\b[A-Za-z] \\b|\\b [A-Za-z]\\b)', '', str1)
@@ -44,6 +44,8 @@ def preproc(file):
 
         for suffix in suffixList:
             str1 = re.sub(suffix + r'\b', '', str1)
+        
+        
 
         preprocFileW.write(str1)
     
@@ -63,7 +65,7 @@ def IDFDictFinder(file):
     IDFRead2 = open(file)            
     for line in IDFRead2:
         for key in idf_dict.keys():
-            if re.search(r'\b' + key, line):
+            if re.search(r'\b' + key + r'\b', line):
                 idf_dict[key] += 1
 
 
@@ -72,6 +74,8 @@ def calcuIDF(numberOfDocs):
     for key in idf_dict.keys():
         if key not in idf_calc:
             idf_calc[key] = (math.log(numberOfDocs/idf_dict[key])) + 1
+
+        #print(idf_dict)
 
 def calcTFIDF(file):
     tf_idf = open(file)
@@ -115,6 +119,7 @@ def calcTFIDF(file):
     #print()
     #print(idf_calc)
     #print()
+    #print(idf_calc)
    
     top5Words = sorted(tfidf_dict.items(), key=lambda rating: rating[1], reverse= True) [:5]    
 
