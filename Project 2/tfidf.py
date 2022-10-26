@@ -3,10 +3,12 @@ import collections
 import csv
 import re
 
-word_freq = {}
+#word_freq = {}
 idf_dict = {}
 idf_calc = {}
 doc_freq = {}
+#tfidf_dict = {}
+
 def preproc(file):
 
     # open file
@@ -45,32 +47,6 @@ def preproc(file):
 
         preprocFileW.write(str1)
     
- 
-def calcTFIDF(file):
-    tf_idf = open(file)
-    tf_idfW = open(f'tf_idf{file}', 'w')
-
-
-    for line in tf_idf:
-        wordList = line.split(' ')
-        totalWords = 0
-        for i in wordList:
-            if i not in word_freq.keys():
-                totalWords += 1
-                word_freq[i] = 0
-            else:
-                word_freq[i] += 1
-            
-    
-   
-    print(word_freq) #Calculating frequencies of every word
-    print(doc_freq)
-    tf_dict = {}
-    
-    for i in word_freq.keys():
-        tf_dict[i] = word_freq[i] / totalWords
-   
-    print(tf_dict)    
     
 def IDFDictFinder(file):
     
@@ -87,29 +63,86 @@ def IDFDictFinder(file):
     IDFRead2 = open(file)            
     for line in IDFRead2:
         for key in idf_dict.keys():
-            if re.search(r'\b + key + \b', line):
+            if re.search(r'\b' + key, line):
                 idf_dict[key] += 1
 
-    print(idf_dict)
 
 def calcuIDF(numberOfDocs):
-    print(idf_dict)
+
     for key in idf_dict.keys():
         if key not in idf_calc:
             idf_calc[key] = (math.log(numberOfDocs/idf_dict[key])) + 1
-    print(idf_calc)    
+
+def calcTFIDF(file):
+    tf_idf = open(file)
+    tf_idfW = open(f'tf_idf{file}', 'w')
+
+    word_freq = {}
+
+    totalWords = 0
+    for line in tf_idf:
+        wordList = line.split(' ')
+        for i in wordList:
+            totalWords += 1
+            if i not in word_freq.keys():
+                word_freq[i] = 1
+            else:
+                word_freq[i] += 1
+
+    #print('Word Freq')
+    #print(word_freq)
+    #print()
+   
+    #print(word_freq) #Calculating frequencies of every word
+    #print(doc_freq)
+    tf_dict = {}
+    
+    for i in word_freq.keys():
+        tf_dict[i] = word_freq[i] / totalWords
+
+    tfidf_dict = {}
+
+    for IDFkey in idf_calc.keys():
+        if IDFkey not in tfidf_dict.keys():
+            tfidf_dict[IDFkey] = 0
+  
+    for TFkey in tf_dict.keys():
+        for IDFkey in idf_calc.keys():
+            if TFkey == IDFkey:
+                tfidf_dict[TFkey] = round(tf_dict[TFkey] * idf_calc[IDFkey], 2)
+
+    #print(tf_dict)
+    #print()
+    #print(idf_calc)
+    #print()
+   
+    top5Words = sorted(tfidf_dict.items(), key=lambda rating: rating[1], reverse= True) [:5]    
+
+    tf_idfW.write(str(top5Words))
+
+    #print(top5Words)
 
 
 def main():
+
+
     with open('tfidf_docs.txt') as docs:
         list = docs.readlines()
-        
         for line in list:
             preproc(line.strip())
-            calcTFIDF(f'preproc_{line.strip()}')
             IDFDictFinder(f'preproc_{line.strip()}')
-    
+
     numberOfDocs = len(list)
     calcuIDF(numberOfDocs)
+
+    #print(idf_calc)
+
+    with open('tfidf_docs.txt') as docs:
+        list = docs.readlines()
+        for line in list:
+            calcTFIDF(f'preproc_{line.strip()}')
+    
+   
+    
 
 main()
