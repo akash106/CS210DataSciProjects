@@ -6,6 +6,8 @@ import re
 # git add - A, commit -m"message", push (to add files to REPO)
 # git pull (to get files from REPO)
 
+
+# 1.1
 def findPercentage (file):
     
     typeToLevelDict = {}
@@ -23,7 +25,7 @@ def findPercentage (file):
                 typeToLevelDict[row['type']].append(row['level'])
 
     
-    print(typeToLevelDict.items())
+    #print(typeToLevelDict.items())
     countOfFirePokemon = len([i for i in typeToLevelDict["fire"]])
 
     countOfFirePokemon40 = len([i for i in typeToLevelDict["fire"] if float(i) > 40])
@@ -32,12 +34,13 @@ def findPercentage (file):
 
     accurate_percentage = round(percentage)
     with open("pokemon1.txt", "w") as f:
-        f.write(f"Percentage of fire type pokemon over level 40 is {accurate_percentage}%")
+        f.write(f"Percentage of fire type pokemon over level 40 = {accurate_percentage}")
 
 
 def MostFrequentElement(lis):
     return max(set(lis), key = lis.count)
-     
+
+# 1.2     
 def missingType(file):
     WeaknessToTypeDict = {}
 
@@ -71,13 +74,7 @@ def missingType(file):
             else:
                 writer.writerow(row)
         
-    
-
-
-
-    #need to figure out how to replace value in csv
-
-
+# 1.3
 def missingVals(file):
     keyList = ["atk", "hp", "def"]
     Level40 = {}    
@@ -143,7 +140,7 @@ def missingVals(file):
                     row['def'] = Level40['def']
              writer.writerow(row)      
                 
-
+# 1.4
 def personalityDict(file):
     typeToPersonality = {}
     with open(file, "r") as pokedex:
@@ -153,7 +150,7 @@ def personalityDict(file):
             if row['type'] not in typeToPersonality.keys():
                 typeToPersonality[row['type']] = []
                 typeToPersonality[row['type']].append(row['personality'])
-            else:
+            elif row['personality'] not in typeToPersonality[row['type']]:
                 typeToPersonality[row['type']].append(row['personality'])
         
     del typeToPersonality['NaN']
@@ -162,13 +159,13 @@ def personalityDict(file):
         sorted_dict[key] = sorted(typeToPersonality[key]) 
     
     with open("pokemon4.txt", "w") as output:
-        output.write("Pokemon type to personality mapping:\n")
+        output.write(f"Pokemon type to personality mapping:\n")
         for key in sorted_dict.keys():
-            output.write(f"{key} : {sorted_dict[key]} \n")
-    
-    
-    
+            output.write(f"{key} : {sorted_dict[key]}\n")
 
+    
+    
+# 1.5
 def avgHitPoints(file):
     HitPoints = []
 
@@ -178,21 +175,18 @@ def avgHitPoints(file):
         for row in csv_reader:
             if row['stage'] == '3.0' and not math.isnan(float(row['hp'])):
                 HitPoints.append(float(row['hp']))
-    print(HitPoints)
+    #print(HitPoints)
     averageHP = sum(HitPoints) / len(HitPoints)
-    print(averageHP)
+    #print(averageHP)
 
     with open("pokemon5.txt", "w") as output:
         output.write(f"Average hit point for pokemon of stage 3.0 = {round(averageHP)}")
 
 
-
-
-
 def main():
-    #findPercentage("pokemonTrain.csv")
+    findPercentage("pokemonTrain.csv")
     missingType("pokemonTrain.csv")
-    #personalityDict("pokemonTrain.csv")
-    #avgHitPoints("pokemonTrain.csv")
-    missingVals("pokemonTrain.csv")
+    personalityDict("pokemonTrain.csv")
+    avgHitPoints("pokemonResult.csv")
+    missingVals("pokemonResult.csv")
 main()    

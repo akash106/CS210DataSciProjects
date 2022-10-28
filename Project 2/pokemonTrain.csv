@@ -13,7 +13,7 @@ id,name,level,personality,type,weakness,atk,def,hp,stage
 59.0,Arcanine,35.0,gentle,fire,water,45.0,60.0,80.0,2.0
 111.0,Rhyhorn,31.0,naughty,rock,water,40.0,NaN,175.0,1.0
 136.0,Flareon,75.0,bold,NaN,water,NaN,143.0,NaN,2.0
-51.0,Dugtrio,82.0,gentle,ground,water,152.0,161.0,168.0,2.0
+51.0,Dugtrio,82.0,gentle,grounFd,water,152.0,161.0,168.0,2.0
 38.0,Ninetales,5.0,brave,fire,water,NaN,179.0,173.0,2.0
 102.0,Exeggcute,88.0,rash,NaN,fire,NaN,124.0,NaN,1.0
 95.0,Onix,46.0,mild,rock,water,NaN,NaN,191.0,1.0
