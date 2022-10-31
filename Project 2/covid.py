@@ -15,7 +15,7 @@ def avgAge (file):
         reader = csv.DictReader(inp.readlines())
         
 
-    with open("covidTrainResult.csv", 'w') as out:
+    with open("covidResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -43,7 +43,7 @@ def changeDate(file):
         reader = csv.DictReader(inp.readlines())
         
 
-    with open("covidTrainResult.csv", 'w') as out:
+    with open("covidResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -98,7 +98,7 @@ def missingLongLat (file):
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
-    with open('covidTrainResult.csv', 'w') as out:
+    with open('covidResult.csv', 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -133,7 +133,7 @@ def missingCity(file):
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
-    with open("covidTrainResult.csv", 'w') as out:
+    with open("covidResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -172,7 +172,7 @@ def missingSymptoms(file):
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
-    with open("covidTrainResult.csv", 'w') as out:
+    with open("covidResult.csv", 'w') as out:
         writer = csv.DictWriter(out, fieldnames = reader.fieldnames, delimiter=',')
         writer.writeheader()
         for row in reader:
@@ -187,8 +187,8 @@ def missingSymptoms(file):
 
 def main():
     avgAge('covidTrain.csv')
-    changeDate('covidTrainResult.csv')
-    missingCity('covidTrainResult.csv')
-    missingSymptoms('covidTrainResult.csv')
-    missingLongLat('covidTrainResult.csv')
+    changeDate('covidResult.csv')
+    missingCity('covidResult.csv')
+    missingSymptoms('covidResult.csv')
+    missingLongLat('covidResult.csv')
 main()

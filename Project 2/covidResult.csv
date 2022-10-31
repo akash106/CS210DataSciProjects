@@ -49,10 +49,10 @@ ID,age,sex,city,province,country,latitude,longitude,date_onset_symptoms,date_adm
 24.0,45,male,Shijingshan District,Beijing,China,39.92715,116.1737,01.19.2020,01.21.2020,01.22.2020,fever
 25.0,45,male,Shijingshan District,Beijing,China,39.92,116.1737,01.19.2020,01.21.2020,01.23.2020,fever
 26.0,18,female,Tongzhou District,Beijing,China,39.80292,116.7363,01.19.2020,01.20.2020,01.21.2020,fever; respiratory symptoms
-27.0,56,female,Shijingshan District,Beijing,China,39.91093,116.3591,01.16.2020,01.20.2020,01.21.2020,fever; respiratory symptoms
-28.0,42,male,Shijingshan District,Beijing,China,39.91093,116.32,01.20.2020,01.20.2020,01.22.2020,fever
+27.0,56,female,Haidian District,Beijing,China,39.91093,116.3591,01.16.2020,01.20.2020,01.21.2020,fever; respiratory symptoms
+28.0,42,male,Haidian District,Beijing,China,39.91093,116.32,01.20.2020,01.20.2020,01.22.2020,fever
 22.0,39,male,Haidian District,Beijing,China,40.02186,116.2285,01.09.2020,01.14.2020,01.21.2020,fever
-21.0,37,male,Shijingshan District,Beijing,China,39.8306,116.2499,01.14.2020,01.20.2020,01.21.2020,fever
+21.0,37,male,Haidian District,Beijing,China,39.8306,116.2499,01.14.2020,01.20.2020,01.21.2020,fever
 89.0,43,male,Lanzhou City,Gansu,China,36.351259999999996,103.6554,01.18.2020,01.21.2020,01.23.2020,discomfort; fever
 90.0,24,male,Baiyin City,Gansu,China,36.61864,104.6208,01.16.2020,01.22.2020,01.23.2020,cough; fever; headache; muscular soreness; weak
 8904.0,42,female,Longxi County Dingxi City,Gansu,China,35.10665,104.92,01.28.2020,02.04.2020,02.05.2020,fever
@@ -129,7 +129,7 @@ ID,age,sex,city,province,country,latitude,longitude,date_onset_symptoms,date_adm
 167.0,20,male,Zunyi City,Guizhou,China,26.43055,107.1928,01.18.2020,01.18.2020,01.22.2020,discomfort
 169.0,50,female,Tongren City,Guizhou,China,27.3,107.14,01.14.2020,01.21.2020,01.22.2020,nausea
 8489.0,68,male,Zunyi City,Guizhou,China,28.171429999999997,107.0848,01.31.2020,02.03.2020,02.07.2020,nausea; vomiting
-11550.0,4,male,Nakafurano,Hokkaido,Japan,43.4115473,142.3833135,02.15.2020,02.19.2020,02.21.2020,fever 37.7 C
+11550.0,4,male,Shinhidaka,Hokkaido,Japan,43.4115473,142.3833135,02.15.2020,02.19.2020,02.21.2020,fever 37.7 C
 11551.0,4,male,Nakafurano,Hokkaido,Japan,43.4115473,142.3833135,02.18.2020,02.19.2020,02.21.2020,fever 37.7 C
 12576.0,34,male,Okhotsk,Hokkaido,Japan,43.09,144.260889,02.17.2020,02.24.2020,02.27.2020,sore throat; fever (38-39 C)
 12554.0,74,female,Shinhidaka,Hokkaido,Japan,42.4384206,142.3325668,02.17.2020,02.24.2020,02.26.2020,fever (38-39 C); malaise

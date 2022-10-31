@@ -91,7 +91,7 @@ def missingVals(file):
     
     with open(file) as pokedex:
         csv_reader = csv.DictReader(pokedex, delimiter=',')
-        next(csv_reader)
+        #next(csv_reader)
         for row in csv_reader:
             if row['hp'] != "NaN":
                 if float(row['level']) <= 40.0:
