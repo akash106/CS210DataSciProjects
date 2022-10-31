@@ -3,6 +3,12 @@ from collections import OrderedDict
 import csv
 import re
 
+# all contributors
+#zc285
+#ass209
+#kap401
+#arb295
+
 #word_freq = {}
 idf_dict = {}
 idf_calc = {}

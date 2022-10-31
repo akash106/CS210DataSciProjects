@@ -6,6 +6,12 @@ import re
 # git add - A, commit -m"message", push (to add files to REPO)
 # git pull (to get files from REPO)
 
+# all contributors
+#zc285
+#ass209
+#kap401
+#arb295
+
 
 # 1.1
 def findPercentage (file):
@@ -104,8 +110,8 @@ def missingVals(file):
                     Level40['def'].append(float(row['def']))
     
     for i in Level40.keys():
-        Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 1)
-        UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 1)
+        Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 2)
+        UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 2)
     
     with open("pokemonResult.csv", "r") as inp:
         reader = csv.DictReader(inp.readlines())
@@ -139,6 +145,7 @@ def missingVals(file):
                 else:
                     row['def'] = Level40['def']
              writer.writerow(row)      
+
                 
 # 1.4
 def personalityDict(file):
@@ -172,7 +179,7 @@ def avgHitPoints(file):
         csv_reader = csv.DictReader(pokedex, delimiter=',')
         next(csv_reader)
         for row in csv_reader:
-            if row['stage'] == '3.0' and not math.isnan(float(row['hp'])):
+            if row['stage'] == '3.0' and not row['hp'] == 'NaN':
                 HitPoints.append(float(row['hp']))
     #print(HitPoints)
     averageHP = sum(HitPoints) / len(HitPoints)

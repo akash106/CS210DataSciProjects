@@ -3,6 +3,11 @@ import collections
 import csv
 import re
 
+# all contributors
+#zc285
+#ass209
+#kap401
+#arb295
 
 def avgAge (file):
 
