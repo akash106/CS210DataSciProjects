@@ -109,9 +109,14 @@ def missingVals(file):
                 else:
                     Level40['def'].append(float(row['def']))
     
+    print(Level40)
+    print(UnderLevel40)
+    
     for i in Level40.keys():
-        Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 2)
-        UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 2)
+        Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 1)
+        UnderLevel40[i] = round(sum(UnderLevel40[i]) / len(UnderLevel40[i]), 1)
+    
+
     
     with open("pokemonResult.csv", "r") as inp:
         reader = csv.DictReader(inp.readlines())
