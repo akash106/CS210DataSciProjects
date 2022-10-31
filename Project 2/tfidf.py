@@ -1,5 +1,5 @@
 import math
-import collections
+from collections import OrderedDict
 import csv
 import re
 
@@ -22,14 +22,12 @@ def preproc(file):
     # clean up the string
 
         str1 = re.sub(r'http://\S+ | https://\S+', '', str1)
-        #str1 = re.sub("[a-z]\w[a-z]", '', str1)
         str1 = re.sub('[^\w\s]','',str1) 
         str1 = re.sub('\s+', ' ', str1)
         str1 = re.sub('(\\b[A-Za-z] \\b|\\b [A-Za-z]\\b)', '', str1)
         str1 = str1.lower()
 
     # get rid of stopword
-
         stopList = []
         stopWords = open('stopwords.txt')
         for line in stopWords:
@@ -46,7 +44,6 @@ def preproc(file):
             str1 = re.sub(suffix + r'\b', '', str1)
         
         
-
         preprocFileW.write(str1)
     
     
@@ -69,17 +66,22 @@ def IDFDictFinder(file):
                 idf_dict[key] += 1
 
 
+
+
 def calcuIDF(numberOfDocs):
 
     for key in idf_dict.keys():
         if key not in idf_calc:
             idf_calc[key] = (math.log(numberOfDocs/idf_dict[key])) + 1
 
-        #print(idf_dict)
+    print(idf_calc)
 
 def calcTFIDF(file):
     tf_idf = open(file)
-    tf_idfW = open(f'tf_idf{file}', 'w')
+    modified_file = file[8:]
+    
+    
+    tf_idfW = open(f'tfidf_{modified_file}', 'w')
 
     word_freq = {}
 
@@ -115,13 +117,15 @@ def calcTFIDF(file):
             if TFkey == IDFkey:
                 tfidf_dict[TFkey] = round(tf_dict[TFkey] * idf_calc[IDFkey], 2)
 
-    #print(tf_dict)
+    print(tf_dict)
     #print()
     #print(idf_calc)
     #print()
     #print(idf_calc)
+
+    dict1 = OrderedDict(sorted(tfidf_dict.items()))
    
-    top5Words = sorted(tfidf_dict.items(), key=lambda rating: rating[1], reverse= True) [:5]    
+    top5Words = sorted(dict1.items(), key=lambda rating: rating[1], reverse= True) [:5]    
 
     tf_idfW.write(str(top5Words))
 
@@ -148,6 +152,6 @@ def main():
             calcTFIDF(f'preproc_{line.strip()}')
     
    
-    
+    print(idf_dict)
 
 main()

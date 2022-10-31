@@ -1,4 +1,5 @@
 Pokemon type to personality mapping:
+NaN : ['bashful', 'bold', 'calm', 'docile', 'hardy', 'hasty', 'impish', 'jolly', 'lax', 'mild', 'naive', 'naughty', 'quiet', 'rash', 'relaxed', 'serious']
 bug : ['careful']
 electric : ['hardy']
 fairy : ['impish', 'naughty', 'sassy']

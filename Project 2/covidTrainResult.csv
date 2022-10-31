@@ -126,8 +126,8 @@ ID,age,sex,city,province,country,latitude,longitude,date_onset_symptoms,date_adm
 164.0,29,male,Fangchenggang City,Guangxi,China,21.88401,107.9967,01.23.2020,01.23.2020,01.24.2020,discomfort
 165.0,62,male,Fangchenggang City,Guangxi,China,21.88401,107.9967,01.15.2020,01.23.2020,01.24.2020,fever
 11971.0,55,female,Fangchenggang City,Guangxi,China,22.56,107.9967,01.22.2020,01.26.2020,01.28.2020,fever; nasal congestion; runny nose; sore throat; cough
-167.0,20,male,Zunyi City,Guizhou,China,26.43055,107.1928,01.18.2020,01.18.2020,01.22.2020,discomfort
-169.0,50,female,Tongren City,Guizhou,China,27.3,107.14,01.14.2020,01.21.2020,01.22.2020,nausea
+167.0,20,male,Tongren City,Guizhou,China,26.43055,107.1928,01.18.2020,01.18.2020,01.22.2020,discomfort
+169.0,50,female,Tongren City,Guizhou,China,27.3,107.14,01.14.2020,01.21.2020,01.22.2020,discomfort
 8489.0,68,male,Zunyi City,Guizhou,China,28.171429999999997,107.0848,01.31.2020,02.03.2020,02.07.2020,nausea; vomiting
 11550.0,4,male,Shinhidaka,Hokkaido,Japan,43.4115473,142.3833135,02.15.2020,02.19.2020,02.21.2020,fever 37.7 C
 11551.0,4,male,Nakafurano,Hokkaido,Japan,43.4115473,142.3833135,02.18.2020,02.19.2020,02.21.2020,fever 37.7 C

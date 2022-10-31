@@ -153,7 +153,6 @@ def personalityDict(file):
             elif row['personality'] not in typeToPersonality[row['type']]:
                 typeToPersonality[row['type']].append(row['personality'])
         
-    del typeToPersonality['NaN']
     sorted_dict = {}
     for key in sorted(typeToPersonality):
         sorted_dict[key] = sorted(typeToPersonality[key]) 

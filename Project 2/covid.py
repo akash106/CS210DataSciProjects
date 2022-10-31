@@ -80,12 +80,15 @@ def missingLongLat (file):
         #now just have to write it to a file
 
     for i in latitude.keys():
-        latitude[i] = round(sum(latitude[i]) / len(latitude[i]), 2)
-    for i in longitude.keys():
-        longitude[i] = round(sum(longitude[i]) / len(longitude[i]), 2)
+        latitude[i] = round((sum(latitude[i]) / len(latitude[i])), 2)
+        print(latitude[i])
     
-    print(latitude)
-    print(longitude)
+    for i in longitude.keys():
+        longitude[i] = round((sum(longitude[i]) / len(longitude[i])), 2)
+        print(longitude[i])
+        
+        
+    
 
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
@@ -131,7 +134,6 @@ def missingCity(file):
         for row in reader:
             if row['city'] == "NaN":
                 frequentCity = MostFrequentElement(provToCityDict[row['province']])
-                print(frequentCity)
                 row['city'] = frequentCity
                 #print(row['city'])
                 writer.writerow(row)
