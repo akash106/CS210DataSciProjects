@@ -179,9 +179,9 @@ def avgHitPoints(file):
         csv_reader = csv.DictReader(pokedex, delimiter=',')
         next(csv_reader)
         for row in csv_reader:
-            if row['stage'] == '3.0' and not row['hp'] == 'NaN':
+            if row['stage'] == '3.0':
                 HitPoints.append(float(row['hp']))
-    #print(HitPoints)
+    print(HitPoints)
     averageHP = sum(HitPoints) / len(HitPoints)
     #print(averageHP)
 
@@ -192,7 +192,7 @@ def avgHitPoints(file):
 def main():
     findPercentage("pokemonTrain.csv")
     missingType("pokemonTrain.csv")
-    personalityDict("pokemonTrain.csv")
-    avgHitPoints("pokemonResult.csv")
     missingVals("pokemonResult.csv")
+    personalityDict("pokemonResult.csv")
+    avgHitPoints("pokemonResult.csv")
 main()    
