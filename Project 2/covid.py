@@ -1,5 +1,5 @@
 import math
-import collections
+from collections import OrderedDict, Counter
 import csv
 import re
 
@@ -22,9 +22,9 @@ def avgAge (file):
                 if re.search('-', row['age']):
                     match = re.split(r"\D", row['age'])
                     sum = 0
-                    length = len(range(int(match[0]), int(match[1])))
+                    length = len(range(int(match[0]), int(match[1])+ 1))
                     if length > 0:
-                        for i in range(int(match[0]), int(match[1])):
+                        for i in range(int(match[0]), int(match[1])+ 1):
                             sum += i
                         avg = round(sum/length)
                         row['age'] = str(avg)
@@ -86,11 +86,11 @@ def missingLongLat (file):
 
     for i in latitude.keys():
         latitude[i] = round((sum(latitude[i]) / len(latitude[i])), 2)
-        print(latitude[i])
+        #print(latitude[i])
     
     for i in longitude.keys():
         longitude[i] = round((sum(longitude[i]) / len(longitude[i])), 2)
-        print(longitude[i])
+        #print(longitude[i])
         
         
     
@@ -114,8 +114,11 @@ def missingLongLat (file):
         covidData.close()    
 
 
-def MostFrequentElement(lis):
-    return max(set(lis), key = lis.count)
+
+def mostCommon(val):
+    finder = Counter(val)
+    theCommonVal, count = finder.most_common(1)[0]
+    return theCommonVal
 
 def missingCity(file):
 
@@ -130,6 +133,12 @@ def missingCity(file):
             elif row['city'] != "NaN":
                 provToCityDict[row['province']].append(row['city'])
 
+    #dict1 = OrderedDict(sorted(provToCityDict.items(), key = lambda rating: rating[0], reverse = True))
+
+    #print(dict1)
+
+    
+
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
@@ -138,9 +147,9 @@ def missingCity(file):
         writer.writeheader()
         for row in reader:
             if row['city'] == "NaN":
-                frequentCity = MostFrequentElement(provToCityDict[row['province']])
+                frequentCity = mostCommon(provToCityDict[row['province']])
+                #print(frequentCity)
                 row['city'] = frequentCity
-                #print(row['city'])
                 writer.writerow(row)
             else:
                 writer.writerow(row)
@@ -169,6 +178,8 @@ def missingSymptoms(file):
                 else:
                     provToSympDict[row['province']].append(row['symptoms'])
 
+    dict1 = OrderedDict(sorted(provToSympDict.items()))
+
     with open(file, "r") as inp:
         reader = csv.DictReader(inp.readlines())
 
@@ -177,7 +188,7 @@ def missingSymptoms(file):
         writer.writeheader()
         for row in reader:
             if row['symptoms'] == "NaN":
-                frequentSymptom = MostFrequentElement(provToSympDict[row['province']])
+                frequentSymptom = mostCommon(dict1[row['province']])
                 row['symptoms'] = frequentSymptom
                 #print(row['city'])
                 writer.writerow(row)
@@ -188,7 +199,8 @@ def missingSymptoms(file):
 def main():
     avgAge('covidTrain.csv')
     changeDate('covidResult.csv')
+    missingLongLat('covidResult.csv')
     missingCity('covidResult.csv')
     missingSymptoms('covidResult.csv')
-    missingLongLat('covidResult.csv')
+    
 main()

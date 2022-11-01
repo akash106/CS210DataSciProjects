@@ -109,8 +109,8 @@ def missingVals(file):
                 else:
                     Level40['def'].append(float(row['def']))
     
-    print(Level40)
-    print(UnderLevel40)
+    #print(Level40)
+    #print(UnderLevel40)
     
     for i in Level40.keys():
         Level40[i] = round(sum(Level40[i]) / len(Level40[i]), 1)
@@ -186,7 +186,7 @@ def avgHitPoints(file):
         for row in csv_reader:
             if row['stage'] == '3.0':
                 HitPoints.append(float(row['hp']))
-    print(HitPoints)
+    #print(HitPoints)
     averageHP = sum(HitPoints) / len(HitPoints)
     #print(averageHP)
 

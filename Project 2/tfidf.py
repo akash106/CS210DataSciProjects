@@ -80,7 +80,7 @@ def calcuIDF(numberOfDocs):
         if key not in idf_calc:
             idf_calc[key] = (math.log(numberOfDocs/idf_dict[key])) + 1
 
-    print(idf_calc)
+    #print(idf_calc)
 
 def calcTFIDF(file):
     tf_idf = open(file)
@@ -123,7 +123,7 @@ def calcTFIDF(file):
             if TFkey == IDFkey:
                 tfidf_dict[TFkey] = round(tf_dict[TFkey] * idf_calc[IDFkey], 2)
 
-    print(tf_dict)
+    #print(tf_dict)
     #print()
     #print(idf_calc)
     #print()
@@ -158,6 +158,6 @@ def main():
             calcTFIDF(f'preproc_{line.strip()}')
     
    
-    print(idf_dict)
+    #print(idf_dict)
 
 main()
