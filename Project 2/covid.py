@@ -114,10 +114,15 @@ def missingLongLat (file):
         covidData.close()    
 
 
-
-def mostCommon(val):
+def mostFrequent(val):
     finder = Counter(val)
-    theCommonVal, count = finder.most_common(1)[0]
+    theCommonVal, hicount = finder.most_common(1)[0]
+    for val, counter in finder.most_common():
+        if counter != hicount:
+            break
+        else:
+            theCommonVal = min(theCommonVal,val)
+        #print result
     return theCommonVal
 
 def missingCity(file):
@@ -147,7 +152,7 @@ def missingCity(file):
         writer.writeheader()
         for row in reader:
             if row['city'] == "NaN":
-                frequentCity = mostCommon(provToCityDict[row['province']])
+                frequentCity = mostFrequent(provToCityDict[row['province']])
                 #print(frequentCity)
                 row['city'] = frequentCity
                 writer.writerow(row)
@@ -188,7 +193,7 @@ def missingSymptoms(file):
         writer.writeheader()
         for row in reader:
             if row['symptoms'] == "NaN":
-                frequentSymptom = mostCommon(dict1[row['province']])
+                frequentSymptom = mostFrequent(dict1[row['province']])
                 row['symptoms'] = frequentSymptom
                 #print(row['city'])
                 writer.writerow(row)
